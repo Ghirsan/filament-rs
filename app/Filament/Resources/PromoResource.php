@@ -26,28 +26,45 @@ class PromoResource extends Resource
                 Forms\Components\TextInput::make('name')
                     ->label('Name')
                     ->required(),
+                Forms\Components\FileUpload::make('image')
+                    ->label('Image')
+                    ->image(),
+                Forms\Components\Toggle::make('is_active')
+                    ->label('Is Active')
+                    ->inline(false),
                 Forms\Components\Textarea::make('description')
                     ->label('Description'),
-                Forms\Components\Toggle::make('is_active')
-                    ->label('Is Active'),
-                Forms\Components\DateTimePicker::make('published_at')
+                Forms\Components\DatePicker::make('published_at')
                     ->label('Published At'),
-                Forms\Components\DateTimePicker::make('expired_at')
+                Forms\Components\DatePicker::make('expired_at')
                     ->label('Expired At'),
                 Forms\Components\TextInput::make('price')
                     ->label('Price')
-                    ->money('idr'),
+                    ->numeric(),
+                    // ->minValue()
+                    // ->maxValue(),
                 Forms\Components\Toggle::make('show_price')
                     ->label('Show Price'),
-                Forms\Components\Select::make('age_category_id')
+                Forms\Components\Radio::make('genders')
+                    ->label('Gender?')
+                    ->options([
+                        'L' => 'Laki-Laki',
+                        'P' => 'Perempuan',
+                    ])
+                    ->inline()
+                    ->inlineLabel(false),
+                Forms\Components\Select::make('age_category')
                     ->label('Age Category')
-                    ->relationship('ageCategory', 'name'),
-                Forms\Components\Select::make('price_category_id')
+                    ->relationship('ageCategory', 'name')
+                    ->required(),
+                Forms\Components\Select::make('price_category')
                     ->label('Price Category')
-                    ->relationship('priceCategory', 'name'),
-                Forms\Components\Select::make('unit_category_id')
+                    ->relationship('priceCategory', 'name')
+                    ->required(),
+                Forms\Components\Select::make('unit_category')
                     ->label('Unit Category')
-                    ->relationship('unitCategory', 'name'),
+                    ->relationship('unitCategory', 'name')
+                    ->required(),
             ]);
     }
 

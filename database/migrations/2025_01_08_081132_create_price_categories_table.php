@@ -11,6 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
+        Schema::disableForeignKeyConstraints();
         Schema::create('price_categories', function (Blueprint $table) {
             $table->ulid('id')->primary();
             $table->string('name');
@@ -21,6 +22,7 @@ return new class extends Migration
             $table->foreignId('updated_by_id')->nullable()->constrained('users')->onDelete('set null');
             $table->timestamps();
         });
+        Schema::enableForeignKeyConstraints();
     }
 
     /**
