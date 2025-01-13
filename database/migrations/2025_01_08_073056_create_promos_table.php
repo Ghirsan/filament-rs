@@ -12,12 +12,20 @@ return new class extends Migration
     public function up(): void
     {
         Schema::disableForeignKeyConstraints();
-        Schema::create('price_categories', function (Blueprint $table) {
+        Schema::create('promos', function (Blueprint $table) {
             $table->ulid('id')->primary();
             $table->string('name');
+            $table->string('image')->nullable();
+            $table->longText('description')->nullable();
             $table->boolean('is_active')->default(true);
-            $table->bigInteger('min')->default(0);
-            $table->bigInteger('max')->default(0);
+            $table->timestamp('published_at')->nullable();
+            $table->timestamp('expired_at')->nullable();
+            $table->bigInteger('price')->nullable();
+            $table->boolean('show_price')->default(true);
+            $table->json('genders')->nullable();
+            $table->foreignUlid('age_category_id')->constrained('age_categories')->cascadeOnDelete();
+            $table->foreignUlid('price_category_id')->constrained('price_categories')->cascadeOnDelete();
+            $table->foreignUlid('unit_category_id')->constrained('unit_categories')->cascadeOnDelete();
             $table->foreignId('created_by_id')->nullable()->constrained('users')->onDelete('set null');
             $table->foreignId('updated_by_id')->nullable()->constrained('users')->onDelete('set null');
             $table->timestamps();
@@ -30,6 +38,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('price_categories');
+        Schema::dropIfExists('promos');
     }
 };

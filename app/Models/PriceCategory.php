@@ -46,4 +46,14 @@ class PriceCategory extends Model
             }
         });
     }
+
+    public function getMin()
+    {
+        return $this->min;
+    }
+
+    public function getMax()
+    {
+        return $this->max;
+    }
 }
