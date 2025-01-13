@@ -42,7 +42,8 @@ class PromoResource extends Resource
                     ->label('Expired At'),
                 Forms\Components\TextInput::make('price')
                     ->label('Price')
-                    ->numeric(),
+                    ->numeric()
+                    ->required(),
                     // ->minValue()
                     // ->maxValue(),
                 Forms\Components\Toggle::make('show_price')
