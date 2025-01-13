@@ -9,6 +9,7 @@ use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
@@ -69,7 +70,21 @@ class PromoResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('name')
+                TextColumn::make('name'),
+                TextColumn::make('price'),
+                IconColumn::make('is_active')
+                ->icon(fn ($state): string => match ($state) {
+                    'draft' => 'heroicon-o-information-circle',
+                    0 => 'heroicon-o-x-circle',
+                    1 => 'heroicon-o-check-circle',
+                    default => 'heroicon-o-question-mark-circle',
+                })
+                ->color(fn ($state): string => match ($state) {
+                    'draft' => 'info',
+                    0 => 'danger',
+                    1 => 'success',
+                    default => 'secondary',
+                })
             ])
             ->filters([
                 //
