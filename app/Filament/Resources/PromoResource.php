@@ -53,15 +53,15 @@ class PromoResource extends Resource
                     ])
                     ->inline()
                     ->inlineLabel(false),
-                Forms\Components\Select::make('age_category')
+                Forms\Components\Select::make('age_category_id')
                     ->label('Age Category')
                     ->relationship('ageCategory', 'name')
                     ->required(),
-                Forms\Components\Select::make('price_category')
+                Forms\Components\Select::make('price_category_id')
                     ->label('Price Category')
                     ->relationship('priceCategory', 'name')
                     ->required(),
-                Forms\Components\Select::make('unit_category')
+                Forms\Components\Select::make('unit_category_id')
                     ->label('Unit Category')
                     ->relationship('unitCategory', 'name')
                     ->required(),
