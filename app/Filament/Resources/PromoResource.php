@@ -9,6 +9,7 @@ use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -57,10 +58,6 @@ class PromoResource extends Resource
                     ->label('Age Category')
                     ->relationship('ageCategory', 'name')
                     ->required(),
-                Forms\Components\Select::make('price_category_id')
-                    ->label('Price Category')
-                    ->relationship('priceCategory', 'name')
-                    ->required(),
                 Forms\Components\Select::make('unit_category_id')
                     ->label('Unit Category')
                     ->relationship('unitCategory', 'name')
@@ -72,7 +69,7 @@ class PromoResource extends Resource
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('name')
             ])
             ->filters([
                 //

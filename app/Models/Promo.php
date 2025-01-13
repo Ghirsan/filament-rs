@@ -45,4 +45,29 @@ class Promo extends Model
         'created_by_id',
         'updated_by_id'
     ];
+
+    public static function getCategoryId($price)
+    {
+        $priceCategory = PriceCategory::where('min', '<=', $price)
+        ->where( 'max', '>=', $price)
+        ->first();
+        return $priceCategory ? $priceCategory->id : null;
+    }
+
+    protected static function booted()
+    {
+        static::creating(function ($model) {
+            if (auth()->check()) {
+                $model->created_by_id = auth()->user()->id; // ULID dari user yang login
+            }
+            // dd($model->price);
+            $model->price_category_id = self::getCategoryId($model->price);
+        });
+
+        static::updating(function ($model) {
+            if (auth()->check()) {
+                $model->updated_by_id = auth()->user()->id; // ULID dari user yang login
+            }
+        });
+    }
 }
