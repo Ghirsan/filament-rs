@@ -16,3 +16,4 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [AllController::class, 'index']);
+Route::get('/{id}/detail', [AllController::class, 'show'])->name('promo.detail');

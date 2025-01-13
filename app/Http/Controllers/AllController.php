@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\AgeCategory;
 use App\Models\PriceCategory;
+use App\Models\Promo;
 use App\Models\UnitCategory;
 use Illuminate\Http\Request;
 use SebastianBergmann\CodeCoverage\Report\Xml\Unit;
@@ -18,6 +19,7 @@ class AllController extends Controller
         $data['UnitCategory'] = UnitCategory::where('is_active', 1)->latest()->get();
         $data['AgeCategory'] = AgeCategory::where('is_active', 1)->latest()->get();
         $data['PriceCategory'] = PriceCategory::where('is_active', 1)->latest()->get();
+        $data['Promo'] = Promo::where('is_active', 0)->latest()->get();
         return view('welcome', $data);
     }
 
@@ -42,7 +44,11 @@ class AllController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $data['UnitCategory'] = UnitCategory::where('is_active', 1)->latest()->get();
+        $data['AgeCategory'] = AgeCategory::where('is_active', 1)->latest()->get();
+        $data['PriceCategory'] = PriceCategory::where('is_active', 1)->latest()->get();
+        $data['Promo'] = Promo::where('is_active', 0)->latest()->get();
+        return view('detail', $data);
     }
 
     /**
