@@ -10,22 +10,16 @@
 </a>
 {{-- submenu item --}}
 <div class="sub-menu collapse" id="submenu-price">
-    <a href="" class="nav-link">
-        <span class="icon">
-            <i class="bi bi-file-earmark-check"></i>
-        </span>
-        <span class="description">
-            Project 1
-        </span>
-    </a>
-    <a href="" class="nav-link">
-        <span class="icon">
-            <i class="bi bi-file-earmark-check"></i>
-        </span>
-        <span class="description">
-            Project 2
-        </span>
-    </a>
+    @foreach ($PriceCategory as $Column)
+        <a href="" class="nav-link">
+            <span class="icon">
+                <i class="bi bi-file-earmark-check"></i>
+            </span>
+            <span class="description">
+                {{ $Column -> name }}
+            </span>
+        </a>
+    @endforeach
 </div>
 
 {{-- unit --}}
@@ -39,22 +33,16 @@
 </a>
 {{-- submenu item --}}
 <div class="sub-menu collapse" id="submenu-unit">
-    <a href="" class="nav-link">
-        <span class="icon">
-            <i class="bi bi-file-earmark-check"></i>
-        </span>
-        <span class="description">
-            Project 1
-        </span>
-    </a>
-    <a href="" class="nav-link">
-        <span class="icon">
-            <i class="bi bi-file-earmark-check"></i>
-        </span>
-        <span class="description">
-            Project 2
-        </span>
-    </a>
+    @foreach ( $UnitCategory as $Column)
+        <a href="" class="nav-link">
+            <span class="icon">
+                <i class="bi bi-file-earmark-check"></i>
+            </span>
+            <span class="description">
+                {{ $Column->name }}
+            </span>
+        </a>
+    @endforeach
 </div>
 
 {{-- Age --}}
@@ -68,20 +56,14 @@
 </a>
 {{-- submenu item --}}
 <div class="sub-menu collapse" id="submenu-age">
-    <a href="" class="nav-link">
-        <span class="icon">
-            <i class="bi bi-file-earmark-check"></i>
-        </span>
-        <span class="description">
-            Project 1
-        </span>
-    </a>
-    <a href="" class="nav-link">
-        <span class="icon">
-            <i class="bi bi-file-earmark-check"></i>
-        </span>
-        <span class="description">
-            Project 2
-        </span>
-    </a>
+    @foreach ($AgeCategory as $Column)
+        <a href="" class="nav-link">
+            <span class="icon">
+                <i class="bi bi-file-earmark-check"></i>
+            </span>
+            <span class="description">
+                {{ $Column -> name }}
+            </span>
+        </a>
+    @endforeach
 </div>
